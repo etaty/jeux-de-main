@@ -24,7 +24,20 @@ class ApplicationSpec extends Specification {
 
       status(home) must equalTo(OK)
       contentType(home) must beSome.which(_ == "text/html")
-      contentAsString(home) must contain ("Your new application is ready.")
+    }
+
+    "render the player vs computer page" in new WithApplication{
+      val home = route(FakeRequest(GET, "/player-vs-computer")).get
+
+      status(home) must equalTo(OK)
+      contentType(home) must beSome.which(_ == "text/html")
+    }
+
+    "render the computer vs computer page" in new WithApplication{
+      val home = route(FakeRequest(GET, "/computer-vs-computer")).get
+
+      status(home) must equalTo(OK)
+      contentType(home) must beSome.which(_ == "text/html")
     }
   }
 }

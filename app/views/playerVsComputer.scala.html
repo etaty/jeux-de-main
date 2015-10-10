@@ -1,0 +1,48 @@
+@(last: Option[String], rpsHistory: RPSHistory)
+
+@main("Welcome to Rock Paper Scissors") {
+
+
+    <div>
+        <form method="post" action="@routes.Application.playPlayerVsComputer">
+            <button type="submit" name="rps" value="rock">Rock</button>
+            <button type="submit" name="rps" value="paper">Paper</button>
+            <button type="submit" name="rps" value="scissors">Scissors</button>
+        </form>
+    </div>
+
+    <div>
+
+        <h5>Result</h5>
+        @last.map("Last : " + _).getOrElse("")
+
+        @if(rpsHistory.won > rpsHistory.lost) {
+            <p>You are winning!</p>
+        } else {
+            @if(rpsHistory.lost > rpsHistory.won) {
+                <p>Your are loosing!</p>
+            } else {
+                <p>It's tied!</p>
+            }
+        }
+
+        <h6>Stats</h6>
+        <ul>
+            <li>rounds: @rpsHistory.rounds</li>
+            <li>You won: @rpsHistory.won</li>
+            <li>You lost: @rpsHistory.lost</li>
+            <li>ties: @rpsHistory.tie</li>
+        </ul>
+
+        <form method="post" action="@routes.Application.resetPlayerVsComputer">
+            <button type="submit">Reset History (restart)</button>
+        </form>
+
+        <ul>
+
+        @for(g <- rpsHistory.games) {
+            <li>@g.p1 - @g.p2 => @g.result </li>
+        }
+        </ul>
+    </div>
+}

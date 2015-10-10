@@ -1,4 +1,6 @@
-This is your new Play application
+Rock Paper Scissors
 =================================
 
-This file will be packaged with your application, when using `activator dist`.
+Use Scala + Play Framework
+
+`sbt start`

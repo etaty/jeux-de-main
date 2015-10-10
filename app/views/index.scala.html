@@ -1,7 +1,8 @@
-@(message: String)
+@()
 
-@main("Welcome to Play") {
+@main("Welcome to Rock Paper Scissors") {
 
-    @play20.welcome(message)
+     <a href="@routes.Application.showPlayerVsComputer">play vs computer</a>
+     <a href="@routes.Application.showComputerVsComputer()">play vs computer</a>
 
 }
