@@ -1,8 +1,13 @@
-@()
+@(games: Vector[String])
 
 @main("Welcome to Rock Paper Scissors") {
 
-     <a href="@routes.Application.showPlayerVsComputer">play vs computer</a>
-     <a href="@routes.Application.showComputerVsComputer()">play vs computer</a>
+    @for(g <- games) {
+        <h6>@g</h6>
+        <ul>
+            <li><a href="@routes.Application.showPlayerVsComputer(g)">play vs computer</a></li>
+            <li><a href="@routes.Application.showComputerVsComputer(g)">computer vs computer</a></li>
+        </ul>
+    }
 
 }

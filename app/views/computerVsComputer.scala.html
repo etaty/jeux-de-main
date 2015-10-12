@@ -1,4 +1,4 @@
-@(rounds: Int, fightResult: Option[RPSHistory])
+@(rounds: Int, fightResult: Option[Game[_]])
 
 @main("Welcome to Rock Paper Scissors") {
 
@@ -26,7 +26,7 @@
 
     <h6>Stats</h6>
     <ul>
-        <li>rounds: @h.rounds</li>
+        <li>rounds: @h.rounds.length</li>
         <li>computer1 won: @h.won</li>
         <li>computer1 lost: @h.lost</li>
         <li>ties: @h.tie</li>
@@ -34,8 +34,8 @@
 
     <h6>Rounds</h6>
     <ul>
-    @h.games.map { g =>
-        <li>@g.p1 - @g.p2 => @g.result </li>
+    @h.rounds.map { g =>
+        <li>@g.p1 - @g.p2 => @@g.result </li>
     }
     </ul>
     }

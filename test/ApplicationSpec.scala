@@ -26,15 +26,29 @@ class ApplicationSpec extends Specification {
       contentType(home) must beSome.which(_ == "text/html")
     }
 
-    "render the player vs computer page" in new WithApplication{
-      val home = route(FakeRequest(GET, "/player-vs-computer")).get
+    "render the RockPaperScissors : player vs computer page" in new WithApplication{
+      val home = route(FakeRequest(GET, "/RockPaperScissors/player-vs-computer")).get
 
       status(home) must equalTo(OK)
       contentType(home) must beSome.which(_ == "text/html")
     }
 
-    "render the computer vs computer page" in new WithApplication{
-      val home = route(FakeRequest(GET, "/computer-vs-computer")).get
+    "render the RockPaperScissors : computer vs computer page" in new WithApplication{
+      val home = route(FakeRequest(GET, "/RockPaperScissors/computer-vs-computer")).get
+
+      status(home) must equalTo(OK)
+      contentType(home) must beSome.which(_ == "text/html")
+    }
+
+    "render the RockPaperScissorsLizardSpock : player vs computer page" in new WithApplication{
+      val home = route(FakeRequest(GET, "/RockPaperScissorsLizardSpock/player-vs-computer")).get
+
+      status(home) must equalTo(OK)
+      contentType(home) must beSome.which(_ == "text/html")
+    }
+
+    "render the RockPaperScissorsLizardSpock : computer vs computer page" in new WithApplication{
+      val home = route(FakeRequest(GET, "/RockPaperScissorsLizardSpock/computer-vs-computer")).get
 
       status(home) must equalTo(OK)
       contentType(home) must beSome.which(_ == "text/html")

@@ -1,13 +1,13 @@
-@(last: Option[String], rpsHistory: RPSHistory)
+@(last: Option[String], rpsHistory: Game[_])
 
 @main("Welcome to Rock Paper Scissors") {
 
 
     <div>
-        <form method="post" action="@routes.Application.playPlayerVsComputer">
-            <button type="submit" name="rps" value="rock">Rock</button>
-            <button type="submit" name="rps" value="paper">Paper</button>
-            <button type="submit" name="rps" value="scissors">Scissors</button>
+        <form method="post" action="@routes.Application.playPlayerVsComputer(rpsHistory.gameEngine.id)">
+            @for(choice <- rpsHistory.gameEngine.choices) {
+                <button type="submit" name="rps" value="@choice.toString.toLowerCase">@choice.toString</button>
+            }
         </form>
     </div>
 
@@ -28,20 +28,20 @@
 
         <h6>Stats</h6>
         <ul>
-            <li>rounds: @rpsHistory.rounds</li>
+            <li>rounds: @rpsHistory.rounds.length</li>
             <li>You won: @rpsHistory.won</li>
             <li>You lost: @rpsHistory.lost</li>
             <li>ties: @rpsHistory.tie</li>
         </ul>
 
-        <form method="post" action="@routes.Application.resetPlayerVsComputer">
+        <form method="post" action="@routes.Application.resetPlayerVsComputer(rpsHistory.gameEngine.id)">
             <button type="submit">Reset History (restart)</button>
         </form>
 
         <ul>
 
-        @for(g <- rpsHistory.games) {
-            <li>@g.p1 - @g.p2 => @g.result </li>
+        @for(g <- rpsHistory.rounds) {
+            <li>@g.p1 - @g.p2 => @@g.result </li>
         }
         </ul>
     </div>

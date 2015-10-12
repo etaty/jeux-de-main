@@ -1,6 +1,4 @@
-package models
-
-import java.security.SecureRandom
+package models.rockpaperscissors
 
 import play.api.data.validation.ValidationError
 import play.api.libs.json.{JsResult, JsString, JsValue, Format}
@@ -14,15 +12,7 @@ case object Paper extends Hand
 case object Scissors extends Hand
 
 object Hand {
-  val random = new SecureRandom()
-
-  val hands = Vector(Rock, Paper, Scissors)
-
-  def randomHand = hands(random.nextInt(hands.length))
-
-  def validate(hand: String): Option[Hand] = {
-    hands.find(_.toString.equalsIgnoreCase(hand))
-  }
+  val hands = Vector(Rock, Scissors, Paper)
 
   implicit val formatHand = new Format[Hand] {
     override def writes(o: Hand): JsValue = o match {
@@ -39,3 +29,5 @@ object Hand {
       })
   }
 }
+
+
